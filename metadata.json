@@ -1,0 +1,12 @@
+{
+  "name": "Remix: Land Acquisition Dashboard",
+  "description": "A comprehensive real-time dashboard for tracking land acquisition progress, expropriation status, and payment records.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

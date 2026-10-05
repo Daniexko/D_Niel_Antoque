@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="100%" height="100%">
+  <!-- White rounded square background guarantees 100% legibility in all browser themes (Light and Dark tabs) -->
+  <rect width="128" height="128" rx="28" fill="#ffffff" />
+  
+  <!-- Dashed connecting line between Dot 1 (24) and Dot 2 (44) -->
+  <line x1="24" y1="46" x2="44" y2="46" stroke="#dc2626" stroke-width="7" stroke-dasharray="5 4.5" stroke-linecap="round" />
+  
+  <!-- Solid connecting line from Dot 2 (44) through Dot 5 (104) -->
+  <line x1="44" y1="46" x2="104" y2="46" stroke="#dc2626" stroke-width="7" stroke-linecap="round" />
+  
+  <!-- Alignment dots (circles) with high contrast -->
+  <circle cx="24" cy="46" r="9" fill="#dc2626" />
+  <circle cx="44" cy="46" r="9" fill="#dc2626" />
+  <circle cx="64" cy="46" r="9" fill="#dc2626" />
+  <circle cx="84" cy="46" r="9" fill="#dc2626" />
+  <circle cx="104" cy="46" r="9" fill="#dc2626" />
+  
+  <!-- Ultra-bold, highly readable navy blue "LA" text, optimized for tiny favicon display dimensions -->
+  <text x="64" y="106" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="56" fill="#0f295a" text-anchor="middle" letter-spacing="-1">LA</text>
+</svg>

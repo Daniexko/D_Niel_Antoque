@@ -1,0 +1,361 @@
+import React from "react";
+import { cn } from "../lib/utils";
+
+interface SCLALogoProps {
+  className?: string;
+  size?: number;
+  animate?: boolean;
+}
+
+export const SCLALogo: React.FC<SCLALogoProps> = ({
+  className,
+  size = 180,
+  animate = true,
+}) => {
+  return (
+    <div 
+      className={cn("relative flex items-center justify-center select-none", className)}
+      style={{ width: size, height: size }}
+    >
+      {/* Outer Cyan Electric Glow / Pulse Layer */}
+      {animate && (
+        <div className="absolute inset-[-8px] rounded-full bg-[#0ef] opacity-10 blur-2xl animate-pulse" />
+      )}
+
+      {/* Cybernetic Spinning Gear/Radar ring outside */}
+      {animate && (
+        <svg 
+          className="absolute inset-0 w-full h-full animate-[spin_24s_linear_infinite]" 
+          viewBox="0 0 200 200"
+          style={{ transformOrigin: "center" }}
+        >
+          <circle 
+            cx="100" 
+            cy="100" 
+            r="98" 
+            fill="none" 
+            stroke="#0ef" 
+            strokeWidth="0.7" 
+            strokeDasharray="4 28 8 16"
+            className="opacity-40" 
+          />
+          <circle 
+            cx="100" 
+            cy="100" 
+            r="95" 
+            fill="none" 
+            stroke="#06b6d4" 
+            strokeWidth="0.5" 
+            strokeDasharray="80 120"
+            className="opacity-20" 
+          />
+        </svg>
+      )}
+
+      {/* Main Vector Logo */}
+      <svg
+        viewBox="0 0 200 200"
+        width="100%"
+        height="100%"
+        className={cn(
+          "w-full h-full relative z-10 transition-all duration-500",
+          animate ? "hover:scale-105" : ""
+        )}
+      >
+        <defs>
+          {/* Deep Dark Metallic Cosmic circular Plate */}
+          <radialGradient id="metallicPlate" cx="50%" cy="50%" r="50%" fx="35%" fy="35%">
+            <stop offset="0%" stopColor="#1e293b" />
+            <stop offset="65%" stopColor="#0f172a" />
+            <stop offset="100%" stopColor="#020617" />
+          </radialGradient>
+
+          {/* Electric Cyan Neon Circular Outer Glow */}
+          <linearGradient id="neonCyanGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#00f0ff" />
+            <stop offset="50%" stopColor="#02b0ff" />
+            <stop offset="100%" stopColor="#00ffcc" />
+          </linearGradient>
+
+          {/* Matte Silver Border Ring */}
+          <linearGradient id="silverRing" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#e2e8f0" />
+            <stop offset="30%" stopColor="#cbd5e1" />
+            <stop offset="50%" stopColor="#94a3b8" />
+            <stop offset="70%" stopColor="#64748b" />
+            <stop offset="100%" stopColor="#334155" />
+          </linearGradient>
+
+          {/* Glowing Letters SC Rich Cyan Gradient with Depth */}
+          <linearGradient id="cyanLettersGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#ffffff" />
+            <stop offset="15%" stopColor="#a5f3fc" />
+            <stop offset="45%" stopColor="#06b6d4" />
+            <stop offset="80%" stopColor="#0891b2" />
+            <stop offset="100%" stopColor="#09556f" />
+          </linearGradient>
+
+          {/* 3D Inner Bevel Highlight */}
+          <linearGradient id="bevelLight" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.6" />
+            <stop offset="35%" stopColor="#ffffff" stopOpacity="0" />
+            <stop offset="100%" stopColor="#000000" stopOpacity="0.75" />
+          </linearGradient>
+
+          {/* Text Curved Path at Top (Welcome Path) */}
+          <path id="welcomeTextPath" d="M 32 94 A 68 68 0 0 1 168 94" fill="none" />
+
+          {/* Soft Glow filter for constellation points */}
+          <filter id="neonPointGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+
+          {/* Clip path inside SC for mesh constraint */}
+          <clipPath id="scLetterClip">
+            <text
+              x="100"
+              y="118"
+              fontFamily='"Inter", "Outfit", "Segoe UI", sans-serif'
+              fontWeight="900"
+              fontSize="72"
+              letterSpacing="-0.03em"
+              textAnchor="middle"
+            >
+              SC
+            </text>
+          </clipPath>
+        </defs>
+
+        {/* Outer Shiny Steel Bevel Rim */}
+        <circle cx="100" cy="100" r="95" fill="none" stroke="url(#silverRing)" strokeWidth="3" />
+
+        {/* High-Tech Glowing Electric Cyan Neon Ring */}
+        <circle 
+          cx="100" 
+          cy="100" 
+          r="92" 
+          fill="none" 
+          stroke="url(#neonCyanGlow)" 
+          strokeWidth="2" 
+          filter="url(#neonPointGlow)"
+          className="opacity-90"
+        />
+
+        {/* Metallic Plate Background */}
+        <circle cx="100" cy="100" r="89.5" fill="url(#metallicPlate)" stroke="#090d16" strokeWidth="1" />
+
+        {/* Tech Blueprint Grid lines on background */}
+        <g stroke="#0ef" strokeWidth="0.2" className="opacity-10">
+          <line x1="20" y1="100" x2="180" y2="100" />
+          <line x1="100" y1="20" x2="100" y2="180" />
+          <circle cx="100" cy="100" r="72" fill="none" strokeDasharray="3 6" />
+          <circle cx="100" cy="100" r="48" fill="none" strokeDasharray="1 4" />
+        </g>
+
+        {/* Welcome Curved Text along the arc */}
+        <text className="font-sans font-black tracking-[0.24em] text-[8.5px] uppercase">
+          <textPath 
+            href="#welcomeTextPath" 
+            startOffset="50%" 
+            textAnchor="middle" 
+            fill="#a5f3fc"
+            className="opacity-80"
+            style={{ fill: "url(#neonCyanGlow)", filter: "drop-shadow(0px 0px 1.5px rgba(0, 238, 255, 0.45))" }}
+          >
+            WELCOME
+          </textPath>
+        </text>
+
+        {/* Huge "SC" 3D Shadow/Drown base Layer */}
+        <text
+          x="102"
+          y="120.5"
+          fontFamily='"Inter", "Outfit", "Segoe UI", sans-serif'
+          fontWeight="900"
+          fontSize="72"
+          letterSpacing="-0.03em"
+          textAnchor="middle"
+          fill="#020306"
+          className="opacity-90"
+        >
+          SC
+        </text>
+        <text
+          x="101"
+          y="119.5"
+          fontFamily='"Inter", "Outfit", "Segoe UI", sans-serif'
+          fontWeight="900"
+          fontSize="72"
+          letterSpacing="-0.03em"
+          textAnchor="middle"
+          fill="#06121f"
+          className="opacity-80"
+        >
+          SC
+        </text>
+
+        {/* Main "SC" letters foreground container */}
+        <g>
+          {/* Base SC text filled with neon cyan gradient */}
+          <text
+            x="100"
+            y="118"
+            fontFamily='"Inter", "Outfit", "Segoe UI", sans-serif'
+            fontWeight="900"
+            fontSize="72"
+            letterSpacing="-0.03em"
+            textAnchor="middle"
+            fill="url(#cyanLettersGrad)"
+          >
+            SC
+          </text>
+
+          {/* 3D Glassmorphic Bevel Highlight */}
+          <text
+            x="100"
+            y="118"
+            fontFamily='"Inter", "Outfit", "Segoe UI", sans-serif'
+            fontWeight="900"
+            fontSize="72"
+            letterSpacing="-0.03em"
+            textAnchor="middle"
+            fill="url(#bevelLight)"
+            opacity="0.55"
+            pointerEvents="none"
+          >
+            SC
+          </text>
+        </g>
+
+        {/* Constellations Mesh Constrained precisely inside the letters SC */}
+        <g clipPath="url(#scLetterClip)" className="pointer-events-none">
+          {/* Flowing animated light traces */}
+          <path 
+            d="M 50 110 L 80 90 L 95 110 L 80 135 L 58 135" 
+            stroke="#ffffff" 
+            strokeWidth="0.8" 
+            fill="none" 
+            className="opacity-70"
+            strokeDasharray="10 35"
+            strokeDashoffset="120"
+            style={{ 
+              animation: animate ? "flowingTraces 4s linear infinite" : "none" 
+            }}
+          />
+          <path 
+            d="M 148 85 L 122 105 L 118 132 L 142 135" 
+            stroke="#ffffff" 
+            strokeWidth="0.8" 
+            fill="none" 
+            className="opacity-70"
+            strokeDasharray="15 30"
+            strokeDashoffset="80"
+            style={{ 
+              animation: animate ? "flowingTraces 5s linear infinite" : "none" 
+            }}
+          />
+
+          {/* Network constellation triangulation meshes */}
+          <g stroke="#ffffff" strokeWidth="0.5" className="opacity-40">
+            {/* Left Letter 'S' nodes connections */}
+            <line x1="50" y1="110" x2="80" y2="90" />
+            <line x1="80" y1="90" x2="95" y2="102" />
+            <line x1="95" y1="102" x2="78" y2="118" />
+            <line x1="78" y1="118" x2="58" y2="135" />
+            <line x1="58" y1="135" x2="82" y2="135" />
+            <line x1="82" y1="135" x2="95" y2="118" />
+            {/* Cross diagonals */}
+            <line x1="50" y1="110" x2="95" y2="102" strokeWidth="0.3" strokeOpacity="0.2" />
+            <line x1="80" y1="90" x2="78" y2="118" strokeWidth="0.3" strokeOpacity="0.2" />
+            <line x1="78" y1="118" x2="82" y2="135" strokeWidth="0.3" strokeOpacity="0.2" />
+
+            {/* Right Letter 'C' nodes connections */}
+            <line x1="148" y1="85" x2="122" y2="102" />
+            <line x1="122" y1="102" x2="118" y2="128" />
+            <line x1="118" y1="128" x2="142" y2="135" />
+            {/* Cross diagonals */}
+            <line x1="148" y1="85" x2="118" y2="128" strokeWidth="0.3" strokeOpacity="0.2" />
+          </g>
+
+          {/* Constellation Nodes/Dots with Cyan aura */}
+          <g fill="#ffffff" filter="url(#neonPointGlow)">
+            {/* S Nodes */}
+            <circle cx="50" cy="110" r="1.8" />
+            <circle cx="80" cy="90" r="2.2" />
+            <circle cx="95" cy="102" r="1.5" />
+            <circle cx="78" cy="118" r="2.0" />
+            <circle cx="58" cy="135" r="1.8" />
+            <circle cx="82" cy="135" r="2.2" />
+
+            {/* C Nodes */}
+            <circle cx="148" cy="85" r="2.2" />
+            <circle cx="122" cy="102" r="1.8" />
+            <circle cx="118" cy="128" r="2.2" />
+            <circle cx="142" cy="135" r="1.5" />
+          </g>
+        </g>
+
+        {/* "LA DATA" 3D Shadow */}
+        <text
+          x="101.2"
+          y="158.2"
+          fontFamily='"Inter", "Outfit", "Segoe UI", sans-serif'
+          fontWeight="900"
+          fontSize="17"
+          letterSpacing="0.14em"
+          textAnchor="middle"
+          fill="#010408"
+          className="opacity-95"
+        >
+          LA DATA
+        </text>
+
+        {/* "LA DATA" Main Face - colored with gradient and glowing */}
+        <text
+          x="100"
+          y="157"
+          fontFamily='"Inter", "Outfit", "Segoe UI", sans-serif'
+          fontWeight="900"
+          fontSize="17"
+          letterSpacing="0.14em"
+          textAnchor="middle"
+          fill="url(#neonCyanGlow)"
+          style={{ filter: "drop-shadow(0px 0px 4px rgba(0, 238, 255, 0.5))" }}
+        >
+          LA DATA
+        </text>
+
+        {/* "your data network is ready." Subtitle */}
+        <text
+          x="100"
+          y="173"
+          fontFamily='"Inter", "Segoe UI", sans-serif'
+          fontWeight="500"
+          fontSize="5.8"
+          letterSpacing="0.02em"
+          textAnchor="middle"
+          fill="#94a3b8"
+          className="opacity-80"
+        >
+          your data network is ready.
+        </text>
+      </svg>
+
+      {/* Embedded SVG Keyframe Animations */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes flowingTraces {
+          0% {
+            stroke-dashoffset: 120;
+          }
+          100% {
+            stroke-dashoffset: 0;
+          }
+        }
+      `}} />
+    </div>
+  );
+};

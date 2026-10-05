@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="GCR Land Acquisition Terminal Dashboard - Central workspace for tracking physical area data, project milestones, and velocity trends." />
+    <title>GCR Land Acquisition Terminal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    </noscript>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      (function() {
+        const isWsError = (msg, stack) => {
+          const str = String(msg || "") + " " + String(stack || "");
+          return str.toLowerCase().includes("websocket") ||
+                 str.toLowerCase().includes("web socket") ||
+                 str.toLowerCase().includes("failed to connect") ||
+                 str.toLowerCase().includes("closed without opened") ||
+                 str.toLowerCase().includes("socket closed") ||
+                 str.toLowerCase().includes("connection reset") ||
+                 str.toLowerCase().includes("script error") ||
+                 str.toLowerCase().includes("hmr");
+        };
+
+        window.addEventListener("unhandledrejection", function(event) {
+          const reason = event.reason;
+          const msg = String(reason?.message || reason || "");
+          const stack = String(reason?.stack || "");
+          if (isWsError(msg, stack)) {
+            event.preventDefault();
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+          }
+        }, true);
+
+        window.addEventListener("error", function(event) {
+          const msg = String(event.message || "");
+          const errorObj = event.error;
+          const errStr = String(errorObj?.message || errorObj?.stack || "");
+          if (isWsError(msg, errStr)) {
+            event.preventDefault();
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+          }
+        }, true);
+
+        const originalOnError = window.onerror;
+        window.onerror = function(message, source, lineno, colno, error) {
+          const msg = String(message || "");
+          const errStr = String(error?.message || error?.stack || "");
+          if (isWsError(msg, errStr)) {
+            return true;
+          }
+          if (originalOnError) {
+            return originalOnError(message, source, lineno, colno, error);
+          }
+          return false;
+        };
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

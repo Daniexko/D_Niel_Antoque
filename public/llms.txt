@@ -1,0 +1,17 @@
+# GCR Land Acquisition Terminal Dashboard
+
+This file provides information for AI agents browsing the GCR Land Acquisition Terminal application, detailing its primary endpoints, structure, and usage guides.
+
+## Primary Sections and Features
+
+- [Dashboard](/#dashboard) - Central overview of land acquisition progress, key performance indicators (KPIs), and project summaries.
+- [Weekly Updates](/#weekly-updates) - Weekly progress tracking, milestone lists, and real-time activity feed.
+- [Lot Profile](/#lot-profile) - Extensive lot-level detail records, spatial footprints, valuation reports, and document management.
+- [Report Generator](/#reports) - Configuration tools for custom PowerPoint presentations, official PDF briefs, and Excel data sheets.
+- [Add Accomplishment](/#accomplishments) - Logging forms for site acquisition milestones, structural clearances, and administrative reports.
+- [Document Vault](/#vault) - Interface for uploading, categorizing, and viewing deed files, titles, and legal certificates.
+
+## Developer Links and API Endpoints
+
+- [Health Status Check](/api/health) - Verify the operational stability of the custom full-stack backend.
+- [Public Assets](/robots.txt) - Check the search crawler settings for robots.txt.

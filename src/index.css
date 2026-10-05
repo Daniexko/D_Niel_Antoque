@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@variant dark (.dark &);
+
+@theme {
+  --font-sans: "Touch Me Sans Petite Black", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Touch Me Sans Petite Black", "Outfit", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-brand-50: #f0f7ff;
+  --color-brand-100: #e0effe;
+  --color-brand-200: #bae0fd;
+  --color-brand-300: #7cc6fb;
+  --color-brand-400: #38a9f8;
+  --color-brand-500: #0e8ce9;
+  --color-brand-600: #026dc7;
+  --color-brand-700: #0357a1;
+  --color-brand-800: #074a85;
+  --color-brand-900: #0c3f6e;
+  --color-brand-950: #082849;
+}
+
+@layer base {
+  * {
+    @apply border-slate-200 outline-none;
+  }
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased selection:bg-brand-100 selection:text-brand-900;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
+  }
+
+  .tech-card {
+    @apply bg-white border border-slate-200/60 shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 hover:-translate-y-1;
+  }
+}
+
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-slate-200 rounded-full hover:bg-slate-300 transition-colors;
+  }
+}
+
+@media print {
+  /* Suppress standard controls and layout rails */
+  .print\:hidden {
+    display: none !important;
+  }
+
+  body, html, #root, main, .flex-1 {
+    overflow: visible !important;
+    height: auto !important;
+    min-height: auto !important;
+    background: white !important;
+    color: #0f172a !important;
+  }
+
+  /* Force the fixed overlay modal container to render staticly without dim borders */
+  .fixed.inset-0.z-\[250\] {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    background: white !important;
+    backdrop-filter: none !important;
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    z-index: 9999 !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+  }
+
+  .fixed.inset-0.z-\[250\] > div {
+    max-width: 100% !important;
+    width: 100% !important;
+    max-height: none !important;
+    height: auto !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: white !important;
+    color: #0f172a !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative !important;
+  }
+
+  /* Expose maximum detailed printable heights for card elements */
+  #summary-content {
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 2rem !important;
+    background-color: white !important;
+    color: #0f172a !important;
+  }
+
+  /* Clean contrast overrides for pure black on pure white ink budgets */
+  #summary-content * {
+    color: #0f172a !important;
+    background-color: transparent !important;
+    border-color: #cbd5e1 !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+}
